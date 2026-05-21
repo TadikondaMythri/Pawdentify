@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+python-multipart
+requests
+streamlit
+groq
+dotenv
+torch
+torchvision
+timm
+Pillow
+opencv-python
+numpy
+scipy

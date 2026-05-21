@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+python-multipart
+anthropic
+torch
+torchvision
+timm
+Pillow
+opencv-python
+numpy
+scipy
