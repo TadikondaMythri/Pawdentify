@@ -1,3 +1,12 @@
+---
+title: Pawdentify
+emoji: 🐶
+colorFrom: blue
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
 # Pawdentify 🐶
 
 ## Overview
@@ -43,13 +52,6 @@ Pawdentify is a dog breed identification app built with a Streamlit user interfa
 5. Frontend requests a GradCAM overlay from `http://127.0.0.1:8000/gradcam`
 6. User can ask breed-related questions through the built-in chatbot
 
-## Screenshots
-
-> Add screenshots here when available. Example:
-> - `screenshots/upload.png`
-> - `screenshots/result.png`
-> - `screenshots/chat.png`
-
 ## Local Development
 
 1. Clone the repository:
@@ -94,31 +96,3 @@ Pawdentify is a dog breed identification app built with a Streamlit user interfa
 
 - `GROQ_API_KEY` — Groq API key used by the chatbot
 - `API_BASE_URL` — backend URL for the frontend to call (default: `http://127.0.0.1:8000`)
-
-## Project Structure
-
-```
-app.py
-backend/
-  backend/__init__.py
-  main.py
-  predictor.py
-  gradcam.py
-  chatbot.py
-  requirements.txt
-sections/
-  __init__.py
-  chatbot.py
-  gradcam.py
-  header.py
-  result_card.py
-  upload.py
-Dockerfile
-docker-compose.yml
-startup.sh
-requirements.txt
-README.md
-.env.example
-model/
-  best_model.pth
-```
