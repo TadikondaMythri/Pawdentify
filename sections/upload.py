@@ -181,12 +181,14 @@ def show_upload():
                         f"{api_base_url}/predict",
                         files={"file":("image.jpg", image_bytes, "image/jpeg")}
                     )
+                    pred_resp.raise_for_status()
                     data = pred_resp.json()
 
                     gc_resp = requests.post(
                         f"{api_base_url}/gradcam",
                         files={"file":("image.jpg", image_bytes, "image/jpeg")}
                     )
+                    gc_resp.raise_for_status()
 
                     st.session_state.prediction     = data
                     st.session_state.detected_breed = data["top_breed"]
@@ -203,4 +205,8 @@ def show_upload():
                     })
 
                 except Exception as e:
-                    st.error(f"❌ Backend error: {e}")
+                    st.error(
+                        f"❌ Backend error: {e}\n"
+                        f"API_BASE_URL={api_base_url}\n"
+                        "Make sure uvicorn backend.main:app --host 0.0.0.0 --port 8000 is running."
+                    )

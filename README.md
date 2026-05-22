@@ -1,46 +1,124 @@
-# Pawdentify Deployment
+# Pawdentify 🐶
 
-This repository contains a Streamlit front-end and a FastAPI backend for dog breed classification and GradCAM visualization.
+## Overview
 
-## Local development
+Pawdentify is a dog breed identification app built with a Streamlit user interface and a FastAPI backend. Users upload a dog photo, receive the top breed prediction, view a GradCAM heatmap, and chat with a breed-aware assistant.
 
-1. Create a Python virtual environment:
+## Features
+
+- Dog breed classification with a trained EfficientNet model
+- GradCAM visualization overlay for prediction explainability
+- Breed information lookup and chat assistance
+- Streamlit UI for image upload, camera capture, and results display
+- FastAPI backend for prediction and GradCAM inference
+
+## Tech Stack
+
+- Python 3.13
+- Streamlit
+- FastAPI
+- Uvicorn
+- PyTorch / Torchvision / timm
+- Pillow
+- OpenCV
+- Groq API for chatbot interactions
+- Docker / Docker Compose
+
+## Project Architecture
+
+- `app.py` — Streamlit front-end entrypoint
+- `backend/main.py` — FastAPI app exposing `/predict`, `/gradcam`, and `/chat`
+- `backend/predictor.py` — loads the saved model and performs breed prediction
+- `backend/gradcam.py` — generates GradCAM heatmaps for predicted classes
+- `backend/chatbot.py` — optional Groq-backed chat helper
+- `sections/` — Streamlit UI components for header, upload, result card, GradCAM, and chatbot
+- `startup.sh` — combined backend + frontend startup for Docker/Hugging Face Spaces
+
+## Workflow
+
+1. User opens the Streamlit app on `7860`
+2. User uploads or captures a dog image
+3. Frontend sends the image to the backend at `http://127.0.0.1:8000/predict`
+4. Backend returns the top breed and confidence scores
+5. Frontend requests a GradCAM overlay from `http://127.0.0.1:8000/gradcam`
+6. User can ask breed-related questions through the built-in chatbot
+
+## Screenshots
+
+> Add screenshots here when available. Example:
+> - `screenshots/upload.png`
+> - `screenshots/result.png`
+> - `screenshots/chat.png`
+
+## Local Development
+
+1. Clone the repository:
+   ```powershell
+   git clone https://github.com/TadikondaMythri/Pawdentify.git
+   cd Pawdentify
+   ```
+2. Create and activate a virtual environment:
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    ```
-2. Install dependencies:
+3. Install dependencies:
    ```powershell
    pip install -r requirements.txt
    ```
-3. Set your Groq API key and backend URL for local development:
-   ```powershell
-   $env:GROQ_API_KEY = "your_groq_api_key_here"
-   $env:API_BASE_URL = "http://127.0.0.1:8000"
-   ```
-4. Run the backend:
+4. Copy `.env.example` to `.env` and set your values if needed.
+5. Run the backend:
    ```powershell
    uvicorn backend.main:app --host 0.0.0.0 --port 8000
    ```
-5. In a second terminal, run the front-end:
+6. In a second terminal, run the frontend:
    ```powershell
-   streamlit run app.py --server.address 0.0.0.0 --server.port 8501
+   .\venv\Scripts\Activate.ps1
+   streamlit run app.py --server.address 0.0.0.0 --server.port 7860
    ```
-6. Open the app at `http://localhost:8501`
+7. Open the app at `http://localhost:7860`
 
-## Docker deployment
+## Docker Deployment
 
-> Requires Docker Desktop / Docker CLI installed on Windows.
-
-1. Copy `.env.example` to `.env` and set `GROQ_API_KEY`.
-2. Build and start the services:
+1. Ensure Docker is installed.
+2. Copy `.env.example` to `.env` and set `GROQ_API_KEY`.
+3. Start the services:
    ```powershell
    docker compose up --build
    ```
-3. View the app at `http://localhost:8501`
+4. View the app at `http://localhost:7860`
 
-## Notes
+> For Hugging Face Spaces, Streamlit must run on `7860` while FastAPI stays on `8000` internally.
 
-- The Streamlit UI now reads the backend URL from `API_BASE_URL`.
-- The Groq API key is loaded from `GROQ_API_KEY`.
-- The backend service is exposed on port `8000`, and the front-end on port `8501`.
+## Environment Variables
+
+- `GROQ_API_KEY` — Groq API key used by the chatbot
+- `API_BASE_URL` — backend URL for the frontend to call (default: `http://127.0.0.1:8000`)
+
+## Project Structure
+
+```
+app.py
+backend/
+  backend/__init__.py
+  main.py
+  predictor.py
+  gradcam.py
+  chatbot.py
+  requirements.txt
+sections/
+  __init__.py
+  chatbot.py
+  gradcam.py
+  header.py
+  result_card.py
+  upload.py
+Dockerfile
+docker-compose.yml
+startup.sh
+requirements.txt
+README.md
+.env.example
+model/
+  best_model.pth
+```

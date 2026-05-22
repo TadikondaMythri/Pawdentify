@@ -6,8 +6,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+RUN sed -i 's/\r$//' /app/startup.sh && chmod +x /app/startup.sh
 
-EXPOSE 8000 8501
-ENV API_BASE_URL=http://backend:8000
+EXPOSE 8000 7860
+ENV API_BASE_URL=http://127.0.0.1:8000
 
-CMD ["sh", "-c", "streamlit run app.py --server.address 0.0.0.0 --server.port 8501"]
+CMD ["/bin/sh", "-c", "./startup.sh"]

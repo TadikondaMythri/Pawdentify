@@ -1,5 +1,12 @@
 import os
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
+
+# Ensure the repository root is on sys.path so backend can be imported reliably
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.responses import StreamingResponse
@@ -7,14 +14,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
-try:
-    from .predictor import predict
-    from .gradcam import generate_gradcam
-    from .chatbot import ask_chatbot
-except ImportError:
-    from predictor import predict
-    from gradcam import generate_gradcam
-    from chatbot import ask_chatbot
+from backend.predictor import predict
+from backend.gradcam import generate_gradcam
+from backend.chatbot import ask_chatbot
 
 app = FastAPI()
 

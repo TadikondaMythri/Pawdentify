@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from PIL import Image
 import io
-from .predictor import model, transform, CLASS_NAMES, device
+from backend.predictor import model, transform, CLASS_NAMES, device
 
 class GradCAM:
     def __init__(self, model):
