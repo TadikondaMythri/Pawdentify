@@ -1,12 +1,3 @@
----
-title: Pawdentify
-emoji: 🐶
-colorFrom: blue
-colorTo: purple
-sdk: docker
-pinned: false
----
-
 # Pawdentify 🐶
 
 ## Overview
@@ -91,12 +82,3 @@ Pawdentify is a dog breed identification app built with a Streamlit user interfa
 4. View the app at `http://localhost:7860`
 
 > For Hugging Face Spaces, Streamlit must run on `7860` while FastAPI stays on `8000` internally.
-
-## Environment Variables
-
-- `GROQ_API_KEY` — Groq API key used by the chatbot
-<<<<<<< HEAD
-- `API_BASE_URL` — backend URL for the frontend to call (default: `http://127.0.0.1:8000`)
-=======
-- `API_BASE_URL` — backend URL for the frontend to call (default: `http://127.0.0.1:8000`)
->>>>>>> f0fc8e6bda5b478199bc4a6ae276c11e9e6bd7ca
