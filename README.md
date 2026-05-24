@@ -95,4 +95,8 @@ Pawdentify is a dog breed identification app built with a Streamlit user interfa
 ## Environment Variables
 
 - `GROQ_API_KEY` — Groq API key used by the chatbot
+<<<<<<< HEAD
 - `API_BASE_URL` — backend URL for the frontend to call (default: `http://127.0.0.1:8000`)
+=======
+- `API_BASE_URL` — backend URL for the frontend to call (default: `http://127.0.0.1:8000`)
+>>>>>>> f0fc8e6bda5b478199bc4a6ae276c11e9e6bd7ca
