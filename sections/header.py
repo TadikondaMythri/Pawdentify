@@ -1,5 +1,4 @@
 import streamlit as st
-import base64
 
 def show_header():
 
