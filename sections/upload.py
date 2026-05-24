@@ -174,7 +174,7 @@ def show_upload():
             st.session_state.gradcam_bytes  = None
             st.session_state.prediction     = None
 
-            api_base_url = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
+            api_base_url = os.getenv("API_BASE_URL", "https://mythritadikonda-pawdentify-backend.hf.space/")
             with st.spinner("🔍 Analyzing your dog..."):
                 try:
                     pred_resp = requests.post(

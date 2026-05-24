@@ -4,8 +4,7 @@ import base64
 def show_header():
 
     # Logo
-    with open("logo.png", "rb") as f:
-        logo = base64.b64encode(f.read()).decode()
+    logo = "https://github.com/user-attachments/assets/460c59b3-4fec-42b5-bde1-d33052b55e7d"
 
     # CSS
     st.markdown("""
@@ -56,7 +55,7 @@ def show_header():
     st.markdown(f"""
     <div class="pw-header">
         <img class="pw-logo"
-            src="data:image/png;base64,{logo}"
+            src="{logo}"
             alt="Pawdentify"/>
         <div>
             <div class="pw-header-title">Pawdentify</div>

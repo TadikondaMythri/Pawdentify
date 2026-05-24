@@ -9,6 +9,6 @@ torch
 torchvision
 timm
 Pillow
-opencv-python
+opencv-python-headless
 numpy
 scipy

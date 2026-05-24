@@ -9,3 +9,6 @@ __pycache__/
 .idea/
 .vscode/
 .git/
+gradcam/*.png
+model/*.png
+logo.png
