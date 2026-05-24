@@ -3,7 +3,7 @@ import streamlit as st
 def show_header():
 
     # Logo
-    logo = "https://github.com/user-attachments/assets/460c59b3-4fec-42b5-bde1-d33052b55e7d"
+    logo = "https://raw.githubusercontent.com/user-attachments/assets/460c59b3-4fec-42b5-bde1-d33052b55e7d"
 
     # CSS
     st.markdown("""
