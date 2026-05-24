@@ -1,9 +1,22 @@
+import os
 import streamlit as st
+import base64
 
 def show_header():
 
-    # Logo
-    logo = "https://raw.githubusercontent.com/user-attachments/assets/460c59b3-4fec-42b5-bde1-d33052b55e7d"
+    # Load local logo from repo root
+    logo_path = os.path.join(os.path.dirname(__file__), "..", "logo.png")
+    logo_path = os.path.abspath(logo_path)
+    logo = ""
+    if os.path.isfile(logo_path):
+        try:
+            with open(logo_path, "rb") as f:
+                logo_b64 = base64.b64encode(f.read()).decode("utf-8")
+                logo = f"data:image/png;base64,{logo_b64}"
+        except Exception:
+            logo = ""
+
+    logo_html = f'<img class="pw-logo" src="{logo}" alt="Pawdentify"/>' if logo else ""
 
     # CSS
     st.markdown("""
@@ -53,9 +66,7 @@ def show_header():
     # Header HTML
     st.markdown(f"""
     <div class="pw-header">
-        <img class="pw-logo"
-            src="{logo}"
-            alt="Pawdentify"/>
+        {logo_html}
         <div>
             <div class="pw-header-title">Pawdentify</div>
             <div class="pw-header-sub">Snap a photo. Identify the breed.</div>
